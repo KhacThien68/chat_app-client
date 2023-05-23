@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './rootSaga'
+import { reducers } from '../utils/reducerRegistry'
 
 // let sagaMiddleware = createSagaMiddleware()
 // const middleware = [sagaMiddleware]
@@ -15,7 +16,9 @@ import rootSaga from './rootSaga'
 //     getDefaultMiddleware().concat(middleware),
 // })
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+  ...reducers,
+})
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({
