@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from './Footer'
-import { Loading } from '../components'
+import { Loading } from '../../components'
 import Header from './header'
 
 type LayoutProps = {

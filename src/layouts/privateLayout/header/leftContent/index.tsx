@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 import tw from 'twin.macro'
-import logoIcon from '../../../assets/logo/logoIcon.png'
+import logoIcon from '../../../../assets/logo/logoIcon.png'
 import MenuOption from './MenuOption'
 
 const LeftContent : React.FC = () => {

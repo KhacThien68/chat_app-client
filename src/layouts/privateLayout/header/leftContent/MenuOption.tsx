@@ -1,13 +1,12 @@
 import { styled } from 'styled-components'
 import tw from 'twin.macro'
 import { MENU_OPTIONS } from '../constants'
-import { MenuOptionItem } from '../../../models'
 import { useState } from 'react'
+import { MenuOptionItem } from '../../../../models'
 
 const MenuOption: React.FC = () => {
   const [activeItem, setActiveitem] = useState(1)
   const handleClick = (item: MenuOptionItem) => {
-    console.log(item)
     if (activeItem !== item.key) setActiveitem(item.key)
   }
   return (

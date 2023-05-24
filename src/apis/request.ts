@@ -100,7 +100,7 @@ export default request
 // -----------------------------
 // Auth request
 const authRequest = axios.create({
-  baseURL: BASE_URL,
+  baseURL: BASE_URL+'/auth',
 })
 
 authRequest.interceptors.request.use(
