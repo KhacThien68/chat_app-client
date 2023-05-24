@@ -30,6 +30,20 @@ export type LoginResponse = {
   login: string
 }
 
+export type LoginAction = {
+  type: string
+  params: LoginParams
+}
+
+export type LoginCollection = {
+  status: ResponseStatusCode
+  user: User
+  token: {
+    accessToken: string
+    refreshToken: string
+  }
+}
+
 export type RefreshTokenResponse = {
   accessToken: string
   refreshToken: string

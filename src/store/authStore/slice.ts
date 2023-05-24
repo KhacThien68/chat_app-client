@@ -13,22 +13,21 @@ const authSlice = createSlice({
     isLoading: false,
   },
   reducers: {
-    login: (state, action) => {
-      console.log(action.payload)
+    loginPending: (state) => {
       state.isLoading = true
     },
     loginSuccess: (state, action) => {
-        state.isLoading = false
-        state.user = action.payload
+      state.isLoading = false
+      const data = action.payload
+      state.user = data
     },
     loginFailure: (state) => {
-        state.isLoading = false
-    }
+      state.isLoading = false
+    },
   },
-  extraReducers: (builder) => {},
 })
 
 export default authSlice.reducer
 register(authSlice.name, authSlice.reducer)
 
-export const { login, loginSuccess, loginFailure } = authSlice.actions;
+export const { loginPending, loginSuccess, loginFailure } = authSlice.actions

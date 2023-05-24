@@ -3,9 +3,6 @@ import { RefreshTokenResponse } from "../store/authStore/interface"
 export const KEYS = {
   ACCESS_TOKEN: 'access_token',
   REFRESH_TOKEN: 'refresh_token',
-  ORG_ID: 'org_id',
-  CLIENT_ID_KEY: 'client_id',
-  COLUMNS_STATE: 'columns_state',
 }
 
 export const setTokens = ({

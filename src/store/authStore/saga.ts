@@ -1,40 +1,27 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { LoginParams, ResponseStatusCode, User } from './interface'
+import { LoginAction, LoginCollection, ResponseStatusCode } from './interface'
 import { LOGIN } from './type'
-import { loginFailure, loginSuccess } from './slice'
+import { loginPending, loginFailure, loginSuccess } from './slice'
 import { AUTH } from '../../constants/endpoint'
 import { login } from '../../apis/enpoints/auth'
-
-type LoginAction = {
-  type: string
-  params: LoginParams
-}
-
-type LoginCollection = {
-  status: ResponseStatusCode
-  data: {
-    user: User
-    accessToken: string
-    refreshToken: string
-    success: boolean
-  }
-}
+import { setTokens } from '../../utils/storage'
 
 function* authLogin(action: LoginAction) {
   const { params } = action
-  console.log(11111111);
-  
+  yield put(loginPending())
+
   try {
     const response: LoginCollection = yield call(login, AUTH.LOGIN, params)
-    console.log(response);
-    
+    console.log(response)
+
     if (response.status === ResponseStatusCode.HTTP_OK) {
-      if (response.data.success) {
-        yield put(loginSuccess(response))
+      if (response.user) {
+        yield put(loginSuccess(response.user))
       } else {
         yield put(loginFailure())
       }
     }
+    if (response.token) setTokens(response.token)
   } catch (e: any) {
     yield put(loginFailure())
   }

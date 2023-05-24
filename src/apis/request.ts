@@ -6,7 +6,6 @@ import { clearTokens, getTokens, setTokens } from '../utils/storage'
 import { RefreshTokenResponse } from '../store/authStore/interface'
 
 const BASE_URL = 'http://localhost:3333/'
-console.log(BASE_URL)
 
 let refreshing = false
 
