@@ -23,12 +23,17 @@ export type SignupParams = {
   password: String
 }
 
+export type SignupAction = {
+  type: string
+  params: SignupParams
+}
+
 export type LoginParams = {
   email: string
   password: string
 }
 
-export type LoginResponse = {
+export type AuthResponse = {
   token: {
     accessToken: string
     refreshToken: string
@@ -42,7 +47,7 @@ export type LoginAction = {
   params: LoginParams
 }
 
-export type LoginCollection = {
+export type AuthCollection = {
   status: ResponseStatusCode
   user: User
   token: {
@@ -57,15 +62,15 @@ export type RefreshTokenResponse = {
 }
 
 export type AuthVariables = {
-  login: { login: string; password: string; deviceId: string }
+  login: { login: string; password: string }
 }
 
-export type User = { username: string; role: UserRoles; name: string }
+export type User = { username: string; role: UserRoles; name: string, id: number }
 
 export type AuthStore = {
   user?: User
-  loginResponse?: LoginResponse
+  loginResponse?: AuthResponse
   loading: boolean
-  login: (data: LoginResponse & AuthVariables['login']) => void
+  login: (data: AuthResponse & AuthVariables['login']) => void
   logout: () => void
 }

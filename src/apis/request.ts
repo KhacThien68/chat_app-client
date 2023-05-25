@@ -100,7 +100,7 @@ export default request
 // -----------------------------
 // Auth request
 const authRequest = axios.create({
-  baseURL: BASE_URL+'/auth',
+  baseURL: BASE_URL + 'auth',
 })
 
 authRequest.interceptors.request.use(
@@ -109,6 +109,7 @@ authRequest.interceptors.request.use(
     if (accessToken) {
       config.headers = {
         Authorization: `Bearer ${accessToken}`,
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
       }
     }
     return config

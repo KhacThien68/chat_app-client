@@ -12,6 +12,8 @@ import {
 } from '../../components/form'
 import { FaceIcon, InstaIcon, MailIcon } from '../../components/form/authIcon'
 import { SignupParams } from '../../store/authStore/interface'
+import { useDispatch } from 'react-redux'
+import { signup } from '../../store/authStore/action'
 
 const SignupSchema = yup.object().shape({
   firstName: yup.string().required('You must provide your first name'),
@@ -33,9 +35,16 @@ const Signup: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignupParams>({ resolver: yupResolver(SignupSchema) })
+  const dispatch = useDispatch()
   const onSubmitSignUp = (data: SignupParams) => {
     console.log(data)
+    onFinish(data)
   }
+
+  const onFinish = (values: SignupParams) => {
+    dispatch(signup(values))
+  }
+
   return (
     <Form onSubmit={handleSubmit(onSubmitSignUp)}>
       <FormTitle>Create Account</FormTitle>

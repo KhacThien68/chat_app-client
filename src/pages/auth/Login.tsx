@@ -34,13 +34,11 @@ const Login: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginParams>({ resolver: yupResolver(LoginSchema) })
+  const dispatch = useDispatch()
   const onSubmitLogin = (data: LoginParams) => {
-    console.log(data)
     onFinish(data )
   }
-  const dispatch = useDispatch()
   const onFinish = (values: LoginParams) => {
-    console.log('Success:', values)
     dispatch(login(values))
   }
 
