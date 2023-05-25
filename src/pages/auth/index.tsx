@@ -7,11 +7,6 @@ const Auth: React.FC = () => {
     <Container>
       <AuthLayout />
     </Container>
-    // {/* <Routes>
-    //   <Route path={AUTH.LOGIN} element={<Login />} />
-    //   <Route path={AUTH.SIGNUP} element={<Signup />} />
-    //   <Route path="" element={<Navigate to={AUTH.LOGIN} replace />} />
-    // </Routes> */}
   )
 }
 

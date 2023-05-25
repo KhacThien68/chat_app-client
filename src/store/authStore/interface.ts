@@ -16,6 +16,13 @@ export enum ResponseStatusCode {
   HTTP_UN_PROCESSABLE_ENTITY = 422,
 }
 
+export type SignupParams = {
+  firstName: String
+  lastName: String
+  email: String
+  password: String
+}
+
 export type LoginParams = {
   email: string
   password: string

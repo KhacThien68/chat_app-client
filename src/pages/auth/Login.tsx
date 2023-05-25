@@ -1,58 +1,68 @@
-import { Button, Checkbox, Form, Input } from 'antd'
+import * as yup from 'yup'
+import { useForm } from 'react-hook-form'
 import { login } from '../../store/authStore/action'
 import { useDispatch } from 'react-redux'
+import {
+  ErrorMessage,
+  Form,
+  FormButton,
+  FormInput,
+  FormLink,
+  FormSpan,
+  FormTitle,
+  ItemContainer,
+} from '../../components/form'
+import { FaceIcon, InstaIcon, MailIcon } from '../../components/form/authIcon'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { LoginParams } from '../../store/authStore/interface'
+
+const LoginSchema = yup.object().shape({
+  email: yup.string().email().required('You must provide a email address'),
+  password: yup
+    .string()
+    .required('You must provide a password')
+    .min(8, 'Password must have at least 8 characters')
+    .matches(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+      'Password must contains digit, lower case and upper case character',
+    ),
+})
 
 const Login: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginParams>({ resolver: yupResolver(LoginSchema) })
+  const onSubmitLogin = (data: LoginParams) => {
+    console.log(data)
+    onFinish(data )
+  }
   const dispatch = useDispatch()
-  const onFinish = (values: any) => {
-    delete values.remember
+  const onFinish = (values: LoginParams) => {
     console.log('Success:', values)
     dispatch(login(values))
   }
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo)
-  }
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 350, width: '100%' }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[{ required: true, message: 'Please input your email!' }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{ offset: 8, span: 16 }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
+    <Form onSubmit={handleSubmit(onSubmitLogin)}>
+      <FormTitle>Sign in to Website</FormTitle>
+      <ItemContainer>
+        <FaceIcon />
+        <InstaIcon />
+        <MailIcon />
+      </ItemContainer>
+      <FormSpan>or use your email account</FormSpan>
+      <FormInput {...register('email')} type="text" placeholder="Email" />
+      {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+      <FormInput {...register('password')} type="password" placeholder="Password" />
+      {errors.password && (
+        <ErrorMessage>{errors.password.message}</ErrorMessage>
+      )}
+      <FormLink href="http://facebook.com/nkt68">
+        Forgot your password?
+      </FormLink>
+      <FormButton type='submit'>SIGN IN</FormButton>
     </Form>
   )
 }
