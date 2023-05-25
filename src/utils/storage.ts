@@ -1,4 +1,4 @@
-import { RefreshTokenResponse } from '../store/authStore/interface'
+import { RefreshTokenResponse, User } from '../store/authStore/interface'
 
 export const KEYS = {
   ACCESS_TOKEN: 'access_token',
@@ -27,10 +27,10 @@ export const clearTokens = (): void => {
   localStorage.removeItem(KEYS.REFRESH_TOKEN)
 }
 
-export const setUserId = (userId: number) => {
-  localStorage.setItem(KEYS.USER_ID, userId.toString())
+export const setUser = (user: User) => {
+  localStorage.setItem(KEYS.USER_ID, JSON.stringify(user))
 }
 
-export const getUserId = () => {
+export const getUser = () => {
   return localStorage.getItem(KEYS.USER_ID) || undefined
 }

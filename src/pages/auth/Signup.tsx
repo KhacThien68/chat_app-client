@@ -37,7 +37,6 @@ const Signup: React.FC = () => {
   } = useForm<SignupParams>({ resolver: yupResolver(SignupSchema) })
   const dispatch = useDispatch()
   const onSubmitSignUp = (data: SignupParams) => {
-    console.log(data)
     onFinish(data)
   }
 

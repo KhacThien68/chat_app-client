@@ -36,7 +36,7 @@ const Login: React.FC = () => {
   } = useForm<LoginParams>({ resolver: yupResolver(LoginSchema) })
   const dispatch = useDispatch()
   const onSubmitLogin = (data: LoginParams) => {
-    onFinish(data )
+    onFinish(data)
   }
   const onFinish = (values: LoginParams) => {
     dispatch(login(values))
@@ -53,14 +53,18 @@ const Login: React.FC = () => {
       <FormSpan>or use your email account</FormSpan>
       <FormInput {...register('email')} type="text" placeholder="Email" />
       {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-      <FormInput {...register('password')} type="password" placeholder="Password" />
+      <FormInput
+        {...register('password')}
+        type="password"
+        placeholder="Password"
+      />
       {errors.password && (
         <ErrorMessage>{errors.password.message}</ErrorMessage>
       )}
       <FormLink href="http://facebook.com/nkt68">
         Forgot your password?
       </FormLink>
-      <FormButton type='submit'>SIGN IN</FormButton>
+      <FormButton type="submit">SIGN IN</FormButton>
     </Form>
   )
 }

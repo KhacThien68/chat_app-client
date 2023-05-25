@@ -16,7 +16,7 @@ import {
 } from './slice'
 import { AUTH } from '../../constants/endpoint'
 import { login, signup } from '../../apis/enpoints/auth'
-import { setTokens, setUserId } from '../../utils/storage'
+import { setTokens, setUser } from '../../utils/storage'
 
 function* authLogin(action: LoginAction) {
   const { params } = action
@@ -24,11 +24,10 @@ function* authLogin(action: LoginAction) {
 
   try {
     const response: AuthCollection = yield call(login, AUTH.LOGIN, params)
-    console.log(response)
 
     if (response.status === ResponseStatusCode.HTTP_OK) {
       if (response.user) {
-        setUserId(response.user.id)
+        setUser(response.user)
         yield put(loginSuccess(response.user))
       } else {
         yield put(loginFailure())
@@ -46,11 +45,10 @@ function* authSignup(action: SignupAction) {
 
   try {
     const response: AuthCollection = yield call(signup, AUTH.SIGNUP, params)
-    console.log(response)
 
     if (response.status === ResponseStatusCode.HTTP_CREATED) {
       if (response.user) {
-        setUserId(response.user.id)
+        setUser(response.user)
         yield put(signupSuccess(response.user))
       } else {
         yield put(signupFailure())
