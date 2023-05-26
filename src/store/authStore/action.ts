@@ -1,5 +1,5 @@
 import { LoginParams, SignupParams } from './interface'
-import { LOGIN, SIGNUP } from './type'
+import { LOGIN, LOGOUT, SIGNUP } from './type'
 
 export const login = (params: LoginParams) => ({
   type: LOGIN,
@@ -10,3 +10,8 @@ export const signup = (params: SignupParams) => ({
   type: SIGNUP,
   params,
 })
+
+export const logout = () => ({
+  type: LOGOUT
+})
+

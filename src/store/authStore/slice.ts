@@ -32,6 +32,17 @@ const slice = createSlice({
     loginFailure: (state) => {
       state.isLoading = false
     },
+
+    logoutPending: (state) => {
+      state.isLoading = true
+    },
+    logoutSuccess: (state) => {
+      state.isLoading = false
+      state.user = undefined
+    },
+    logoutFailure: (state) => {
+      state.isLoading = false
+    },
   },
 })
 
@@ -45,4 +56,7 @@ export const {
   signupPending,
   signupSuccess,
   signupFailure,
+  logoutPending,
+  logoutSuccess,
+  logoutFailure,
 } = slice.actions

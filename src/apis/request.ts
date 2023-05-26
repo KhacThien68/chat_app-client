@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import { message } from 'antd'
 import axios from 'axios'
-import { clearTokens, getTokens, setTokens } from '../utils/storage'
+import { clearTokens, clearUser, getTokens, setTokens } from '../utils/storage'
 import { RefreshTokenResponse } from '../store/authStore/interface'
 
 const BASE_URL = process.env.REACT_APP_API_URL
@@ -19,7 +19,7 @@ const refreshAccessToken = async (): Promise<string | undefined> => {
 
     const { data } = await axios
       .create({ baseURL: BASE_URL })
-      .post<RefreshTokenResponse>('/refresh-token', { refreshToken })
+      .post<RefreshTokenResponse>('/auth/refresh', { refreshToken })
     // @ts-ignore
     if (!data || !data.accessToken) return
 
@@ -44,6 +44,7 @@ request.interceptors.request.use(
     if (accessToken) {
       config.headers = {
         Authorization: `Bearer ${accessToken}`,
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
       }
       config.params = {
         ...config.params,
@@ -67,6 +68,7 @@ request.interceptors.response.use(
       const accessToken = await refreshAccessToken()
       if (!accessToken) {
         clearTokens()
+        clearUser()
         message.info({
           content: 'Token expired',
         })
@@ -82,8 +84,7 @@ request.interceptors.response.use(
 
 request.interceptors.response.use(
   (response) => {
-    if (response.data.success) return response.data.data
-    return Promise.reject(response.data)
+    return response.data
   },
   (error) => {
     return Promise.reject(new Error(error.response.data.message))

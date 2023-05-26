@@ -31,6 +31,11 @@ export const setUser = (user: User) => {
   localStorage.setItem(KEYS.USER, JSON.stringify(user))
 }
 
+export const clearUser = ():void => {
+  localStorage.removeItem(KEYS.USER)
+
+}
+
 export const getUser = () => {
   return localStorage.getItem(KEYS.USER) || undefined
 }

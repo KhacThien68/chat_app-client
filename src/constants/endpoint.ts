@@ -1,5 +1,5 @@
 export const AUTH = {
   LOGIN: '/signin',
   SIGNUP: '/signup',
-  LOGOUT: '/logout',
+  LOGOUT: '/auth/logout',
 }

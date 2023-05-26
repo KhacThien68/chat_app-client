@@ -5,7 +5,7 @@ import {
   ResponseStatusCode,
   SignupAction,
 } from './interface'
-import { LOGIN, SIGNUP } from './type'
+import { LOGIN, LOGOUT, SIGNUP } from './type'
 import {
   loginPending,
   loginFailure,
@@ -13,10 +13,13 @@ import {
   signupPending,
   signupSuccess,
   signupFailure,
+  logoutPending,
+  logoutFailure,
+  logoutSuccess,
 } from './slice'
 import { AUTH } from '../../constants/endpoint'
-import { login, signup } from '../../apis/enpoints/auth'
-import { setTokens, setUser } from '../../utils/storage'
+import { login, logout, signup } from '../../apis/enpoints/auth'
+import { clearTokens, clearUser, setTokens, setUser } from '../../utils/storage'
 
 function* authLogin(action: LoginAction) {
   const { params } = action
@@ -60,7 +63,25 @@ function* authSignup(action: SignupAction) {
   }
 }
 
+function* authLogout() {
+  yield put(logoutPending())
+
+  try {
+    const response: { status: number } = yield call(logout, AUTH.LOGOUT)
+    if (response.status === ResponseStatusCode.HTTP_OK) {
+      yield put(logoutSuccess())
+      clearUser()
+      clearTokens()
+    } else {
+      yield put(logoutFailure())
+    }
+  } catch (e: any) {
+    yield put(logoutFailure())
+  }
+}
+
 export default function* auth() {
   yield takeLatest(SIGNUP, authSignup)
   yield takeLatest(LOGIN, authLogin)
+  yield takeLatest(LOGOUT, authLogout)
 }
