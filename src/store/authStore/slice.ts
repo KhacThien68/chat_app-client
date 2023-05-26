@@ -1,16 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { register } from '../../utils/reducerRegistry'
+import { AuthState } from './interface'
+import { RootState } from '../../app/store'
 
-const authSlice = createSlice({
-  name: 'AUTH',
+const slice = createSlice({
+  name: 'auth',
   initialState: {
-    user: {
-      username: '',
-      role: 'user',
-      name: '',
-    },
+    user: undefined,
     isLoading: false,
-  },
+  } as AuthState,
   reducers: {
     signupPending: (state) => {
       state.isLoading = true
@@ -38,7 +35,14 @@ const authSlice = createSlice({
   },
 })
 
-export default authSlice.reducer
-register(authSlice.name, authSlice.reducer)
+export const authReducer = slice.reducer
+export const getUser = (state: RootState) => state[slice.name].user
 
-export const { loginPending, loginSuccess, loginFailure, signupPending, signupSuccess, signupFailure } = authSlice.actions
+export const {
+  loginPending,
+  loginSuccess,
+  loginFailure,
+  signupPending,
+  signupSuccess,
+  signupFailure,
+} = slice.actions

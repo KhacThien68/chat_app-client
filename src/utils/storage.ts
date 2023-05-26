@@ -3,7 +3,7 @@ import { RefreshTokenResponse, User } from '../store/authStore/interface'
 export const KEYS = {
   ACCESS_TOKEN: 'access_token',
   REFRESH_TOKEN: 'refresh_token',
-  USER_ID: 'user_id',
+  USER: 'user',
 }
 
 export const setTokens = ({
@@ -28,9 +28,9 @@ export const clearTokens = (): void => {
 }
 
 export const setUser = (user: User) => {
-  localStorage.setItem(KEYS.USER_ID, JSON.stringify(user))
+  localStorage.setItem(KEYS.USER, JSON.stringify(user))
 }
 
 export const getUser = () => {
-  return localStorage.getItem(KEYS.USER_ID) || undefined
+  return localStorage.getItem(KEYS.USER) || undefined
 }

@@ -1,24 +1,7 @@
-import {
-  Action,
-  combineReducers,
-  configureStore,
-  ThunkAction,
-} from '@reduxjs/toolkit'
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './rootSaga'
-import { reducers } from '../utils/reducerRegistry'
-
-// let sagaMiddleware = createSagaMiddleware()
-// const middleware = [sagaMiddleware]
-// export const store = configureStore({
-//   reducer: {},
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(middleware),
-// })
-
-const rootReducer = combineReducers({
-  ...reducers,
-})
+import rootReducer from './rootReducer'
 
 const sagaMiddleware = createSagaMiddleware()
 export const store = configureStore({

@@ -5,7 +5,9 @@ import axios from 'axios'
 import { clearTokens, getTokens, setTokens } from '../utils/storage'
 import { RefreshTokenResponse } from '../store/authStore/interface'
 
-const BASE_URL = 'http://localhost:3333/'
+const BASE_URL = process.env.REACT_APP_API_URL
+
+console.log(BASE_URL)
 
 let refreshing = false
 
@@ -67,18 +69,13 @@ request.interceptors.response.use(
       const accessToken = await refreshAccessToken()
       if (!accessToken) {
         clearTokens()
-        // localStorage.removeItem('authStore')
         message.info({
           content: 'Token expired',
         })
-        // logout()
 
-        // navigate('/auth/login')
         throw error
       }
       axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`
-
-      //   navigate(0)
     }
 
     return Promise.reject(error)

@@ -16,11 +16,24 @@ export enum ResponseStatusCode {
   HTTP_UN_PROCESSABLE_ENTITY = 422,
 }
 
+export type User = {
+  email: string
+  firstName: string
+  id: number | undefined
+  image?: String | null
+  lastName: string
+}
+
 export type SignupParams = {
   firstName: String
   lastName: String
   email: String
   password: String
+}
+
+export type AuthState = {
+  user: User | undefined
+  isLoading: boolean
 }
 
 export type SignupAction = {
@@ -64,8 +77,6 @@ export type RefreshTokenResponse = {
 export type AuthVariables = {
   login: { login: string; password: string }
 }
-
-export type User = { username: string; role: UserRoles; name: string, id: number }
 
 export type AuthStore = {
   user?: User
