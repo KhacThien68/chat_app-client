@@ -15,5 +15,5 @@ const Header = () => {
 export default Header
 
 const Container = styled.section.attrs({})`
-  ${tw`sticky top-0 z-10 flex items-center justify-between w-full h-14 bg-[#cccccc]`}
+  ${tw`sticky top-0 z-10 flex items-center justify-between w-full h-14 bg-[#e5e5e8]`}
 `
