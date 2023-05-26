@@ -1,13 +1,20 @@
 import { styled } from 'styled-components'
 import tw from 'twin.macro'
 import { MENU_OPTIONS } from '../constants'
-import { useState } from 'react'
 import { MenuOptionItem } from '../../../../models'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectActiveMenuItem } from '../../../../app/slice'
 
 const MenuOption: React.FC = () => {
-  const [activeItem, setActiveitem] = useState(1)
+  const navigate = useNavigate()
+
+  const activeMenuItem = useSelector(selectActiveMenuItem)
+
   const handleClick = (item: MenuOptionItem) => {
-    if (activeItem !== item.key) setActiveitem(item.key)
+    if (activeMenuItem !== item.key) {
+      navigate(item.path)
+    }
   }
   return (
     <Container>
@@ -16,7 +23,7 @@ const MenuOption: React.FC = () => {
           <ItemContainer
             onClick={() => handleClick(item)}
             key={index}
-            isactive={activeItem === item.key}
+            isactive={(activeMenuItem === item.key).toString()}
           >
             <p>{item.title}</p>
           </ItemContainer>
@@ -33,7 +40,7 @@ const Container = styled.div`
 `
 
 interface ItemProps {
-  isactive: boolean
+  isactive: string
 }
 
 const ItemContainer = styled.div<ItemProps>`
@@ -43,5 +50,5 @@ const ItemContainer = styled.div<ItemProps>`
   &:focus {
     ${tw`bg-[#e2e2e2] cursor-pointer`}
   }
-  border-bottom: ${(props) => (props.isactive ? '4px solid #2e71ff' : '')};
+  border-bottom: ${(props) => (props.isactive === 'true' ? '4px solid #2e71ff' : '')};
 `

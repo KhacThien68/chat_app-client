@@ -1,5 +1,5 @@
 export type MenuOptionItem = {
-    title: string,
-    path: string,
-    key: number,
+  title: string
+  path: string
+  key: number
 }

@@ -1,8 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Layout from './layouts/privateLayout'
 import { getUser } from './utils/storage'
 import Auth from './pages/auth'
-import RenderRoute from './route/RenderRoute'
+import PrivatePages from './pages/privatePages'
 function App() {
   const user = getUser()
   if (!user) {
@@ -12,14 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/auth/*" element={<Auth />} />
-      <Route
-        path="/*"
-        element={
-          <Layout>
-            <RenderRoute />
-          </Layout>
-        }
-      />
+      <Route path="/*" element={<PrivatePages />} />
     </Routes>
   )
 }
