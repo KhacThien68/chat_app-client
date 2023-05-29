@@ -3,6 +3,7 @@ import Footer from './Footer'
 import Header from './header'
 import { styled } from 'styled-components'
 import tw from 'twin.macro'
+import SiderLayout from './siderLayout'
 
 type LayoutProps = {
   children: React.ReactNode
@@ -12,7 +13,12 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <Container>
       <Header />
-      <MainContainer>{children}</MainContainer>
+      <ContentContainer>
+        <Content>
+          <SiderLayout />
+          {children}
+        </Content>
+      </ContentContainer>
       <Footer />
     </Container>
   )
@@ -21,9 +27,11 @@ const Layout = ({ children }: LayoutProps) => {
 export default Layout
 
 const Container = styled.div`
-  ${tw`flex flex-col min-h-screen`}
+  ${tw`flex flex-col h-screen`}
 `
-
-const MainContainer = styled.div`
-  ${tw`flex-1`}
+const ContentContainer = styled.div`
+  ${tw`h-full overflow-hidden flex-1`}
+`
+const Content = styled.div`
+  ${tw`h-full flex`}
 `

@@ -9,6 +9,9 @@ const slice = createSlice({
     isLoading: false,
   } as AuthState,
   reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload
+    },
     signupPending: (state) => {
       state.isLoading = true
     },
@@ -50,6 +53,7 @@ export const authReducer = slice.reducer
 export const getUser = (state: RootState) => state[slice.name].user
 
 export const {
+  setUser,
   loginPending,
   loginSuccess,
   loginFailure,

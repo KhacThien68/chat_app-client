@@ -1,9 +1,7 @@
-import { styled } from "styled-components"
+import { styled } from 'styled-components'
 
-const Home:React.FC = () => {
-    return (
-        <Container>aaaaaaaaaa</Container>
-    )
+const Home: React.FC = () => {
+  return <Container>aaaaaaaaaa</Container>
 }
 
 export default Home

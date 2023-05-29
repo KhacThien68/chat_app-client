@@ -10,7 +10,9 @@ const Auth: React.FC = () => {
   const user = useSelector(getUser)
 
   useEffect(() => {
-    if (user) navigate('/', { replace: true })
+    if (user) {
+      navigate('/', { replace: true })
+    }
   }, [user, navigate])
 
   return (

@@ -22,21 +22,24 @@ const AuthLayout: React.FC = () => {
       <FormContainer
         zindex={100}
         left={'calc(100% - 600px )'}
-        ishidden={!hiddenItemC1}
+        isHidden={(!hiddenItemC1).toString()}
       >
         <Signup />
       </FormContainer>
       <FormContainer
         zindex={hiddenItemC1 ? 200 : 0}
         left={'calc(100% - 600px )'}
-        ishidden={!hiddenItemC1}
+        isHidden={(!hiddenItemC1).toString()}
       >
         <Login />
       </FormContainer>
-      <SwitchContainer ishidden={!hiddenItemC1}>
-        <SwitchCircle1 ishidden={!hiddenItemC1}></SwitchCircle1>
-        <SwitchCircle2 ishidden={!hiddenItemC1}></SwitchCircle2>
-        <SwitchContent ishidden={!hiddenItemC1} onClick={clickHideItem}>
+      <SwitchContainer isHidden={(!hiddenItemC1).toString()}>
+        <SwitchCircle1 isHidden={(!hiddenItemC1).toString()}></SwitchCircle1>
+        <SwitchCircle2 isHidden={(!hiddenItemC1).toString()}></SwitchCircle2>
+        <SwitchContent
+          isHidden={(!hiddenItemC1).toString()}
+          onClick={clickHideItem}
+        >
           <FormTitle>Hello Friend !</FormTitle>
           <Description>
             Enter your personal details and start journey with us
@@ -45,7 +48,10 @@ const AuthLayout: React.FC = () => {
             SIGN UP
           </FormButton>
         </SwitchContent>
-        <SwitchContent ishidden={hiddenItemC1} onClick={clickHideItem}>
+        <SwitchContent
+          isHidden={hiddenItemC1.toString()}
+          onClick={clickHideItem}
+        >
           <FormTitle>Welcome Back !</FormTitle>
           <Description>
             To keep connected with us please login with your personal info
@@ -81,7 +87,7 @@ const Container = styled.div`
 interface FormContainerProps {
   zindex: number
   left: string
-  ishidden: boolean
+  isHidden: string
 }
 const FormContainer = styled.div<FormContainerProps>`
   ${tw`flex items-center justify-center absolute top-0 w-[600px] h-full p-6 bg-[#ecf0f3] `}
@@ -89,7 +95,7 @@ const FormContainer = styled.div<FormContainerProps>`
   left: ${(props) => props.left};
   transition: 1.25s;
   ${(props) =>
-    props.ishidden
+    props.isHidden === 'true'
       ? `left: 0;
   transition: 1.25s;
   transform-origin: right;`
@@ -103,18 +109,18 @@ const transitionStyle = () => css`
 `
 
 interface SwitchCircleProps {
-  ishidden: boolean
+  isHidden: string
 }
 
 const SwitchCircle1 = styled.div<SwitchCircleProps>`
   ${tw`absolute bottom-[-60%] left-[-60%] w-[500px] h-[500px] bg-[#ecf0f3] rounded-[50%]`}
   transition: 1.25s;
   box-shadow: inset 8px 8px 12px #d1d9e6, inset -8px -8px 12px #f9f9f9;
-  ${(props) => (props.ishidden ? transitionStyle : '')}
+  ${(props) => (props.isHidden === 'true' ? transitionStyle : '')}
 `
 const SwitchCircle2 = styled.div<SwitchCircleProps>`
   ${tw`absolute bottom-[-60%] top-[-30%] left-[60%] w-[300px] h-[300px] bg-[#ecf0f3] rounded-[50%]`}
   transition: 1.25s;
   box-shadow: inset 8px 8px 12px #d1d9e6, inset -8px -8px 12px #f9f9f9;
-  ${(props) => (props.ishidden ? transitionStyle : '')}
+  ${(props) => (props.isHidden === 'true' ? transitionStyle : '')}
 `
