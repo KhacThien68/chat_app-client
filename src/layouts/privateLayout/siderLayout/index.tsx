@@ -75,10 +75,11 @@ const SiderLayout: React.FC = () => {
 export default SiderLayout
 
 const Container = styled.div`
-  ${tw`h-full `}
+  ${tw`h-full p-1`}
 `
+
 const Sider = styled(ASider)`
-  ${tw`flex flex-1 h-full flex-col justify-between`}
+  ${tw`flex h-full flex-col justify-between bg-[#fff] rounded-lg overflow-hidden`}
   border-right: 2px solid rgba(5, 5, 5, 0.06);
   align-items: stretch;
 
@@ -94,6 +95,7 @@ const Sider = styled(ASider)`
 
 const MenuContainer = styled.div`
 overflow-auto`
+
 const MenuSider = styled(Menu)`
   ${tw`overflow-auto`}
 `

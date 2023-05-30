@@ -22,8 +22,8 @@ export const CollapseButton: React.FC<Props> = ({ isOpen, action }) => {
 }
 
 const Container = styled.div`
-  ${tw`w-full cursor-pointer p-2 bg-[#fff]`}
-  border: 2px solid rgba(5, 5, 5, 0.06);
+  ${tw`w-full h-11 cursor-pointer p-2 bg-[#fff]`}
+  border-top: 2px solid rgba(5, 5, 5, 0.06);
 
   button {
     background: rgba(0, 0, 0, 0.45);

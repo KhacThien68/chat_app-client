@@ -27,7 +27,7 @@ const Layout = ({ children }: LayoutProps) => {
 export default Layout
 
 const Container = styled.div`
-  ${tw`flex flex-col h-screen`}
+  ${tw`flex flex-col h-screen bg-[#e5e5e8]`}
 `
 const ContentContainer = styled.div`
   ${tw`h-full overflow-hidden flex-1`}

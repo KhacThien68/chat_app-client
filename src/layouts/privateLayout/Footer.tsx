@@ -9,6 +9,7 @@ const Footer: React.FC = () => {
 export default Footer
 
 const Container = styled.div`
-  ${tw`flex items-center justify-center h-14 bg-[#e5e5e8]`}
+  ${tw`flex items-center justify-center h-14 bg-[#fff]`}
   border-bottom: 8px solid #0553a5;
+  border-top: 2px solid #dbdbdb;
 `

@@ -48,7 +48,7 @@ const ItemContainer = styled.div<ItemProps>`
 
   &:hover,
   &:focus {
-    ${tw`bg-[#e2e2e2] cursor-pointer`}
+    ${tw`bg-[#e7f3ff] cursor-pointer`}
   }
   border-bottom: ${(props) => (props.isactive === 'true' ? '4px solid #2e71ff' : '')};
 `

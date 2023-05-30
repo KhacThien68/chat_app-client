@@ -5,15 +5,16 @@ import RightContent from './rightContent'
 
 const Header = () => {
   return (
-      <Container>
-        <LeftContent />
-        <RightContent />
-      </Container>
+    <Container>
+      <LeftContent />
+      <RightContent />
+    </Container>
   )
 }
 
 export default Header
 
 const Container = styled.section.attrs({})`
-  ${tw`sticky top-0 z-10 flex items-center justify-between w-full h-14 bg-[#e5e5e8]`}
+  ${tw`sticky top-0 z-10 flex items-center justify-between w-full h-14 bg-[#fff]`}
+  border-bottom: 2px solid #dbdbdb;
 `
