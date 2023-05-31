@@ -20,7 +20,7 @@ export const Avatar: React.FC<Props> = ({ srcImg, isOnline }) => {
 export default Avatar
 
 const Container = styled.div`
-  ${tw`relative`}
+  ${tw`relative h-full m-auto`}
 `
 const Content = styled(CAvatar)`
   ${tw``}
