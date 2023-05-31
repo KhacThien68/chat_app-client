@@ -18,21 +18,6 @@ const ListChat: React.FC = () => {
         <ChatItem name="Khắc Thiện" />
         <ChatItem name="Khắc Thiện" />
         <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
-        <ChatItem name="Khắc Thiện" />
       </ListContainer>
     </Container>
   )

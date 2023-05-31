@@ -18,9 +18,9 @@ const ChatList: React.FC = () => {
 export default ChatList
 
 const Container = styled.div`
-  ${tw`w-60 h-full flex flex-col bg-[#e5e5e8] p-1`}
+  ${tw`w-60 h-full flex flex-col p-1`}
 `
 
 const Content = styled.div`
-  ${tw`bg-[#fff] h-full rounded-lg flex flex-col`}
+  ${tw`bg-[#fff] h-full rounded-lg flex flex-col overflow-hidden`}
 `
