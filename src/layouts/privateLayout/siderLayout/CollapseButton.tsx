@@ -14,7 +14,7 @@ export const CollapseButton: React.FC<Props> = ({ isOpen, action }) => {
         unCheckedChildren="Close"
         checkedChildren="Open"
         defaultChecked
-        checked={isOpen}
+        checked={!isOpen}
         onChange={action}
       />
     </Container>
