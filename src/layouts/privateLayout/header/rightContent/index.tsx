@@ -18,7 +18,7 @@ const RightContent: React.FC = () => {
     if (!user) {
       navigate('/auth')
     }
-  }, [user])
+  }, [navigate, user])
 
   return (
     <div>
