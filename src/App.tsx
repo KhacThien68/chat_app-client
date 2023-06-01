@@ -2,13 +2,14 @@ import { Route, Routes, useNavigate } from 'react-router-dom'
 import Auth from './pages/auth'
 import PrivatePages from './pages/privatePages'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getUser } from './utils/storage'
 import { setUser } from './store/authStore/slice'
 function App() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const user = useSelector(getUser)
+  const user = getUser()
+
   useEffect(() => {
     if (!user) {
       navigate('/auth')
