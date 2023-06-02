@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Auth from './pages/auth'
 import PrivatePages from './pages/privatePages'
 import { useDispatch } from 'react-redux'
 import { getUser } from './utils/storage'
@@ -16,7 +15,6 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/auth/*" element={<Auth />} />
       <Route path="/*" element={<PrivatePages />} />
     </Routes>
   )

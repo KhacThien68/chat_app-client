@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { store } from './app/store'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Loading } from './components'
+import Auth from './pages/auth'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -15,6 +16,7 @@ root.render(
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <Routes>
+          <Route path="/auth/*" element={<Auth />} />
           <Route path="/*" element={<App />} />
         </Routes>
       </BrowserRouter>
