@@ -4,7 +4,7 @@ import tw from 'twin.macro'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getUser } from '../../utils/storage'
+import { getUser } from '../../store/authStore/slice'
 const Auth: React.FC = () => {
   const navigate = useNavigate()
   const user = useSelector(getUser)

@@ -1,22 +1,24 @@
 import ReactDOM from 'react-dom/client'
+import { Suspense } from 'react'
 import './styles/index.css'
 import './styles/reset.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { store } from './app/store'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Auth from './pages/auth'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Loading } from './components'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/auth/*" element={<Auth />} />
-        <Route path="/*" element={<App />} />
-      </Routes>
-    </BrowserRouter>
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   </Provider>,
 )
 
